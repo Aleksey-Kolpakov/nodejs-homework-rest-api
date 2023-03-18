@@ -15,7 +15,6 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 mongoose
   .connect(process.env.MONGO_URL || "mongodb://127.0.0.1:27017/test")
   .then((connection) => {
-    // console.log(connection);
     console.log("Database connection successful");
   })
   .catch((error) => {

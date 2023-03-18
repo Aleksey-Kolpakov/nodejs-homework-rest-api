@@ -1,6 +1,6 @@
 const uuid = require("uuid").v4;
 const Contact = require("../models/contactsModel");
-const { catchAsync } =require("../helpers/catchAsync");
+const { catchAsync } = require("../helpers/catchAsync");
 
 const getlistContacts = async (req, res, next) => {
   const users = await Contact.find();
@@ -9,8 +9,8 @@ const getlistContacts = async (req, res, next) => {
 
 const getContact = catchAsync(async (req, res, next) => {
   const { contactId } = req.params;
-    const contact = await Contact.findById(contactId);
-    res.status(200).json(contact);
+  const contact = await Contact.findById(contactId);
+  res.status(200).json(contact);
 });
 
 const createContact = catchAsync(async (req, res) => {
@@ -50,13 +50,12 @@ const changeContact = catchAsync(async (req, res, next) => {
 });
 
 const updateStatusContact = catchAsync(async (req, res, next) => {
-  if (!('favorite' in req.body)){
-   res.status(400).json({ message: "missing field favorite" });
-   return;
+  if (!("favorite" in req.body)) {
+    res.status(400).json({ message: "missing field favorite" });
+    return;
   }
   const { favorite } = req.body;
   const { contactId } = req.params;
-console.log(contactId)
   const updatedContact = await Contact.findByIdAndUpdate(
     contactId,
     { favorite },
